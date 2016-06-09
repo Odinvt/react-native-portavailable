@@ -1,10 +1,14 @@
 {
   "name": "react-native-portavailable",
   "version": "1.0.0",
-  "description": "A React Native Package for checking port availability on native android udp & tcp",
-  "main": "index.js",
+  "description": "A React Native Package for checking udp & tcp port availability on native android",
+  "main": "main-tf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "babel main.js --out-file main-tf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Odinvt/react-native-portavailable"
   },
   "keywords": [
     "react",
@@ -13,6 +17,18 @@
     "available",
     "socket"
   ],
+  "dependencies" : {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-plugin-transform-es2015-constants": "^6.1.4",
+    "babel-preset-airbnb": "^2.0.0",
+    "babel-preset-react-native": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-zavatta": "^2.0.2"
+  },
   "author": "Oussama El Bacha",
   "license": "MIT"
 }

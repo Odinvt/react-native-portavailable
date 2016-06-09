@@ -4,6 +4,8 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableNativeArray;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -29,6 +31,28 @@ public class PortAvailableModule extends ReactContextBaseJavaModule {
             available = check(port);
 
             promise.resolve(available);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void range(int min_port, int max_port, int stop, Promise promise) {
+        WritableArray ports = new WritableNativeArray();
+
+        try {
+            int found = 0;
+            for(int i = min_port; i <= max_port; i++) {
+                if(stop > 0 && found == stop) {
+                    break;
+                }
+                if(check(i)) {
+                    ports.pushInt(i);
+                    found++;
+                }
+            }
+
+            promise.resolve(ports);
         } catch (Exception e) {
             promise.reject(e);
         }
