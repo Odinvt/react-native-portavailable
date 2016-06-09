@@ -1,7 +1,7 @@
 {
   "name": "react-native-portavailable",
   "version": "1.0.1",
-  "description": "A React Native Package for checking udp & tcp port availability on native android",
+  "description": "A React Native Package for checking udp and tcp port availability on native android",
   "main": "main-tf.js",
   "scripts": {
     "postinstall": "babel main.js --out-file main-tf.js"

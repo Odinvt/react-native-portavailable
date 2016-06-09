@@ -1,4 +1,4 @@
-# react-native-portavailable
+# react-native-portavailable [![npm version](https://badge.fury.io/js/react-native-portavailable.svg)](https://badge.fury.io/js/react-native-portavailable)
 > A React Native Package for checking tcp and udp port availability on native android.
 
 This is an [implementation](http://svn.apache.org/viewvc/camel/trunk/components/camel-test/src/main/java/org/apache/camel/test/AvailablePortFinder.java?view=markup#l130) coming from the Apache [camel](http://camel.apache.org/) project.
