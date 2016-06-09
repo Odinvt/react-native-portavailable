@@ -1,6 +1,6 @@
 {
   "name": "react-native-portavailable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React Native Package for checking udp & tcp port availability on native android",
   "main": "main-tf.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "available",
     "socket"
   ],
-  "dependencies" : {
+  "dependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
     "babel-plugin-transform-es2015-constants": "^6.1.4",
