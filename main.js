@@ -9,8 +9,6 @@ export default class PortAvailable {
     return new Promise((resolve, reject) => {
       RNPortAvailable.available(port).then((available) => {
         resolve(available);
-      }).catch(err => {
-        reject(err);
       })
     })
   }
@@ -20,8 +18,6 @@ export default class PortAvailable {
       RNPortAvailable.range(min_port, max_port, stop).then((availablePorts) => {
         PortAvailable.available_ports = availablePorts;
         resolve(availablePorts);
-      }).catch(err => {
-        reject(err);
       })
     })
   }

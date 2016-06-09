@@ -27,40 +27,32 @@ public class PortAvailableModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void available(int port, Promise promise) {
         boolean available;
-        try {
-            available = check(port);
+        available = check(port);
 
-            promise.resolve(available);
-        } catch (Exception e) {
-            promise.reject(e);
-        }
+        promise.resolve(available);
     }
 
     @ReactMethod
     public void range(int min_port, int max_port, int stop, Promise promise) {
         WritableArray ports = new WritableNativeArray();
 
-        try {
-            int found = 0;
-            for(int i = min_port; i <= max_port; i++) {
-                if(stop > 0 && found == stop) {
-                    break;
-                }
-                if(check(i)) {
-                    ports.pushInt(i);
-                    found++;
-                }
+        int found = 0;
+        for(int i = min_port; i <= max_port; i++) {
+            if(stop > 0 && found == stop) {
+                break;
             }
-
-            promise.resolve(ports);
-        } catch (Exception e) {
-            promise.reject(e);
+            if(check(i)) {
+                ports.pushInt(i);
+                found++;
+            }
         }
+
+        promise.resolve(ports);
     }
 
-    public boolean check(int port) throws IllegalArgumentException, IOException {
+    public boolean check(int port) {
         if (port < MIN_PORT_NUMBER || port > MAX_PORT_NUMBER) {
-            throw new IllegalArgumentException("Invalid start port: " + port);
+            return false;
         }
 
         ServerSocket ss = null;
@@ -73,7 +65,7 @@ public class PortAvailableModule extends ReactContextBaseJavaModule {
             ds.setReuseAddress(true);
             result = true;
         } catch (IOException e) {
-            throw new IOException(e);
+            /*goes to the return false statement after closing the sockets*/
         } finally {
             if (ds != null) {
                 ds.close();
@@ -84,7 +76,6 @@ public class PortAvailableModule extends ReactContextBaseJavaModule {
                     ss.close();
                 } catch (IOException e) {
                     /* should not be thrown */
-                    throw new IOException(e);
                 }
             }
         }
